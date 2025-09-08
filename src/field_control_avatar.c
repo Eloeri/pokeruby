@@ -122,6 +122,7 @@ void ClearPlayerFieldInput(struct FieldInput *input)
     input->input_field_0_5 = 0;
     input->tookStep = 0;
     input->pressedBButton = 0;
+    input->pressedRButton = 0;
     input->input_field_1_0 = 0;
     input->input_field_1_1 = 0;
     input->input_field_1_2 = 0;
@@ -147,6 +148,8 @@ void GetPlayerFieldInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
                 input->pressedAButton = TRUE;
             if (newKeys & B_BUTTON)
                 input->pressedBButton = TRUE;
+            if (newKeys & R_BUTTON)
+                input->pressedRButton = TRUE;
         }
 
         if (heldKeys & (DPAD_UP | DPAD_DOWN | DPAD_LEFT | DPAD_RIGHT))
@@ -264,7 +267,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         sub_8071310();
         return TRUE;
     }
-    if (input->pressedSelectButton && UseRegisteredKeyItem() == TRUE)
+    if (input->pressedSelectButton | input->pressedRButton && UseRegisteredKeyItem() == TRUE)
         return TRUE;
 
 #if DEBUG

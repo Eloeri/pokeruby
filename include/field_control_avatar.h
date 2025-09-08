@@ -11,6 +11,7 @@ struct FieldInput
     u8 input_field_0_5:1;
     u8 tookStep:1;
     u8 pressedBButton:1;
+    u8 pressedRButton:1;
     u8 input_field_1_0:1;
     u8 input_field_1_1:1;
     u8 input_field_1_2:1;
