@@ -1313,7 +1313,7 @@ bool32 UpdateRandomTrainerEyeRematches(const struct TrainerEyeTrainer *trainers,
                 ret = TRUE;
             }
             else if (HasTrainerAlreadyBeenFought(trainers[i].opponentIDs[0]) == TRUE
-             && (Random() % 100) <= 30)  // 31% chance of getting a rematch
+             && (Random() % 100) <= 99)  // 31% chance of getting a rematch
             {
                 int rematches = 1;
 
@@ -1419,7 +1419,7 @@ bool32 HasAtLeastFiveBadges(void)
         if (FlagGet(sBadgeFlags[i]) == TRUE)
         {
             badgeCount++;
-            if (badgeCount >= 5)
+            if (badgeCount >= 1)
                 return TRUE;
         }
     }

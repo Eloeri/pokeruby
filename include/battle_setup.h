@@ -2,7 +2,7 @@
 #define GUARD_BATTLE_SETUP_H
 
 #define NUM_TRAINER_EYE_TRAINERS 56
-#define TRAINER_REMATCH_STEPS 255
+#define TRAINER_REMATCH_STEPS 1
 
 // IV + LEVEL + SPECIES
 struct TrainerMonNoItemDefaultMoves
