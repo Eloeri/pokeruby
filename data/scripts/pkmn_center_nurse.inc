@@ -6,8 +6,6 @@ Common_EventScript_PkmnCenterNurse:: @ 819FD5B
 
 EventScript_PkmnCenterNurse_HealPkmn:: @ 819FD7C
 	incrementgamestat GAME_STAT_USED_POKECENTER
-	message gText_NurseJoy_OkayIllTakeYourPokemon
-	waitmessage
 	applymovement VAR_0x800B, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	dofieldeffect FLDEFF_POKECENTER_HEAL
@@ -20,17 +18,10 @@ EventScript_PkmnCenterNurse_HealPkmn:: @ 819FD7C
 	end
 
 EventScript_PkmnCenterNurse_ReturnPkmn:: @ 819FDB0
-	message gText_NurseJoy_ThankYouForWaiting
-	waitmessage
 	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
-	waitmovement 0
-	message gText_NurseJoy_WeHopeToSeeYouAgain
-	waitmessage
 	return
 
 EventScript_PkmnCenterNurse_Goodbye:: @ 819FDC7
-	message gText_NurseJoy_WeHopeToSeeYouAgain
-	waitmessage
 	return
 
 EventScript_PkmnCenterNurse_CheckPokerus:: @ 819FDCE
