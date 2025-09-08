@@ -766,7 +766,7 @@ void PokeballGlowEffect_0(struct Sprite *sprite)
     u8 endSpriteId;
     if (sprite->data[1] == 0 || (--sprite->data[1]) == 0)
     {
-        sprite->data[1] = 25;
+        sprite->data[1] = 5;
         endSpriteId = CreateSpriteAtEnd(&gSpriteTemplate_839F208, gUnknown_0839F2A8[sprite->data[2]].x + sprite->x2, gUnknown_0839F2A8[sprite->data[2]].y + sprite->y2, 0);
         gSprites[endSpriteId].oam.priority = 2;
         gSprites[endSpriteId].data[0] = sprite->data[7];
@@ -776,7 +776,7 @@ void PokeballGlowEffect_0(struct Sprite *sprite)
     }
     if (sprite->data[6] == 0)
     {
-        sprite->data[1] = 32;
+        sprite->data[1] = 5;
         sprite->data[0]++;
     }
 }
