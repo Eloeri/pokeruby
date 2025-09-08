@@ -568,12 +568,12 @@ static void sub_8058D0C(u8 direction, u16 heldKeys)
         if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER) && (heldKeys & B_BUTTON) && FlagGet(FLAG_SYS_B_DASH)
          && IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior) == 0)
         {
-            PlayerRun(direction);
-            gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
+            PlayerGoSpeed1(direction);
         }
         else
         {
-            PlayerGoSpeed1(direction);
+            PlayerRun(direction);
+            gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
         }
     }
 }
