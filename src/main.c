@@ -254,7 +254,10 @@ static void ReadKeys(void)
             gMain.newKeys |= A_BUTTON;
 
         if (gMain.heldKeys & L_BUTTON)
+		{
             gMain.heldKeys |= A_BUTTON;
+            gMain.newKeys ^= A_BUTTON;
+		}
     }
 
     if (gMain.newKeys & gMain.watchedKeysMask)
