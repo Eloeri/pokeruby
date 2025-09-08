@@ -117,17 +117,17 @@ static u8 RunSaveDialogCallback(void);
 static void DisplaySaveMessageWithCallback(const u8 *ptr, u8 (*func)(void));
 static void Task_SaveDialog(u8 taskId);
 static void sub_8071700(void);
-static void HideSaveDialog(void);
+//static void HideSaveDialog(void);
 static void SaveDialogStartTimeout(void);
 static u8 SaveDialogCheckForTimeoutOrKeypress(void);
 static u8 SaveDialogCheckForTimeoutAndKeypress(void);
 static u8 SaveDialogCheckForTimeoutAndKeypress(void);
-static u8 SaveDialogCB_DisplayConfirmMessage(void);
-static u8 SaveDialogCB_DisplayConfirmYesNoMenu(void);
-static u8 SaveDialogCB_ProcessConfirmYesNoMenu(void);
-static u8 SaveDialogCB_SaveFileExists(void);
-static u8 SaveDialogCB_DisplayOverwriteYesNoMenu(void);
-static u8 SaveDialogCB_ProcessOverwriteYesNoMenu(void);
+//static u8 SaveDialogCB_DisplayConfirmMessage(void);
+//static u8 SaveDialogCB_DisplayConfirmYesNoMenu(void);
+//static u8 SaveDialogCB_ProcessConfirmYesNoMenu(void);
+//static u8 SaveDialogCB_SaveFileExists(void);
+//static u8 SaveDialogCB_DisplayOverwriteYesNoMenu(void);
+//static u8 SaveDialogCB_ProcessOverwriteYesNoMenu(void);
 static u8 SaveDialogCB_DisplaySavingMessage(void);
 static u8 SaveDialogCB_DoSave(void);
 static u8 SaveDialogCB_SaveSuccess(void);
@@ -598,7 +598,7 @@ static u8 SaveCallback2(void)
 static void sub_807160C(void)
 {
     SaveMapView();
-    saveDialogCallback = SaveDialogCB_DisplayConfirmMessage;
+    saveDialogCallback = SaveDialogCB_DisplaySavingMessage;
     savingComplete = FALSE;
 }
 
@@ -653,10 +653,10 @@ static void sub_8071700(void)
     HandleCloseSaveWindow(0, 0);
 }
 
-static void HideSaveDialog(void)
-{
-    Menu_EraseWindowRect(20, 8, 26, 13);
-}
+//static void HideSaveDialog(void)
+//{
+//    Menu_EraseWindowRect(20, 8, 26, 13);
+//}
 
 static void SaveDialogStartTimeout(void)
 {
@@ -685,83 +685,83 @@ static bool8 SaveDialogCheckForTimeoutAndKeypress(void)
     return FALSE;
 }
 
-static u8 SaveDialogCB_DisplayConfirmMessage(void)
-{
-    Menu_EraseScreen();
-    HandleDrawSaveWindowInfo(0, 0);
-    DisplaySaveMessageWithCallback(gSaveText_WouldYouLikeToSave, SaveDialogCB_DisplayConfirmYesNoMenu);
-    return SAVE_IN_PROGRESS;
-}
-
-static u8 SaveDialogCB_DisplayConfirmYesNoMenu(void)
-{
-    DisplayYesNoMenu(20, 8, 1);
-    saveDialogCallback = SaveDialogCB_ProcessConfirmYesNoMenu;
-    return SAVE_IN_PROGRESS;
-}
-
-static u8 SaveDialogCB_ProcessConfirmYesNoMenu(void)
-{
-    switch (Menu_ProcessInputNoWrap_())
-    {
-    case 0:     //YES
-        HideSaveDialog();
-        switch (gSaveFileStatus)
-        {
-        case 0:
-        case 2:
-            if (gDifferentSaveFile == FALSE)
-            {
-                saveDialogCallback = SaveDialogCB_SaveFileExists;
-                return SAVE_IN_PROGRESS;
-            }
-            saveDialogCallback = SaveDialogCB_DisplaySavingMessage;
-            return SAVE_IN_PROGRESS;
-        default:
-            saveDialogCallback = SaveDialogCB_SaveFileExists;
-            return SAVE_IN_PROGRESS;
-        }
-        break;
-    case -1:    //B button
-    case 1:     //NO
-        HideSaveDialog();
-        sub_8071700();
-        return SAVE_CANCELED;
-    }
-    return SAVE_IN_PROGRESS;
-}
-
-static u8 SaveDialogCB_SaveFileExists(void)
-{
-    DisplaySaveMessageWithCallback(
-      gDifferentSaveFile == TRUE ? gSaveText_ThereIsADifferentFile : gSaveText_ThereIsAlreadyAFile,
-      SaveDialogCB_DisplayOverwriteYesNoMenu);
-    return SAVE_IN_PROGRESS;
-}
-
-static u8 SaveDialogCB_DisplayOverwriteYesNoMenu(void)
-{
-    DisplayYesNoMenu(20, 8, 1);
-    saveDialogCallback = SaveDialogCB_ProcessOverwriteYesNoMenu;
-    return SAVE_IN_PROGRESS;
-}
-
-static u8 SaveDialogCB_ProcessOverwriteYesNoMenu(void)
-{
-    switch (Menu_ProcessInputNoWrap_())
-    {
-    case 0:     //YES
-        HideSaveDialog();
-        saveDialogCallback = SaveDialogCB_DisplaySavingMessage;
-        break;
-    case -1:    //B button
-    case 1:     //NO
-        HideSaveDialog();
-        sub_8071700();
-        return SAVE_CANCELED;
-    }
-    return SAVE_IN_PROGRESS;
-}
+//static u8 SaveDialogCB_DisplayConfirmMessage(void)
+//{
+//    Menu_EraseScreen();
+//    HandleDrawSaveWindowInfo(0, 0);
+//    DisplaySaveMessageWithCallback(gSaveText_WouldYouLikeToSave, SaveDialogCB_DisplayConfirmYesNoMenu);
+//    return SAVE_IN_PROGRESS;
+//}
+//
+//static u8 SaveDialogCB_DisplayConfirmYesNoMenu(void)
+//{
+//    DisplayYesNoMenu(20, 8, 1);
+//    saveDialogCallback = SaveDialogCB_ProcessConfirmYesNoMenu;
+//    return SAVE_IN_PROGRESS;
+//}
+//
+//static u8 SaveDialogCB_ProcessConfirmYesNoMenu(void)
+//{
+//    switch (Menu_ProcessInputNoWrap_())
+//    {
+//    case 0:     //YES
+//        HideSaveDialog();
+//        switch (gSaveFileStatus)
+//        {
+//        case 0:
+//        case 2:
+//            if (gDifferentSaveFile == FALSE)
+//            {
+//                saveDialogCallback = SaveDialogCB_SaveFileExists;
+//                return SAVE_IN_PROGRESS;
+//            }
+//            saveDialogCallback = SaveDialogCB_DisplaySavingMessage;
+//            return SAVE_IN_PROGRESS;
+//        default:
+//            saveDialogCallback = SaveDialogCB_SaveFileExists;
+//            return SAVE_IN_PROGRESS;
+//        }
+//        break;
+//    case -1:    //B button
+//    case 1:     //NO
+//        HideSaveDialog();
+//        sub_8071700();
+//        return SAVE_CANCELED;
+//    }
+//    return SAVE_IN_PROGRESS;
+//}
+//
+//static u8 SaveDialogCB_SaveFileExists(void)
+//{
+//    DisplaySaveMessageWithCallback(
+//      gDifferentSaveFile == TRUE ? gSaveText_ThereIsADifferentFile : gSaveText_ThereIsAlreadyAFile,
+//      SaveDialogCB_DisplayOverwriteYesNoMenu);
+//    return SAVE_IN_PROGRESS;
+//}
+//
+//static u8 SaveDialogCB_DisplayOverwriteYesNoMenu(void)
+//{
+//    DisplayYesNoMenu(20, 8, 1);
+//    saveDialogCallback = SaveDialogCB_ProcessOverwriteYesNoMenu;
+//    return SAVE_IN_PROGRESS;
+//}
+//
+//static u8 SaveDialogCB_ProcessOverwriteYesNoMenu(void)
+//{
+//    switch (Menu_ProcessInputNoWrap_())
+//    {
+//    case 0:     //YES
+//        HideSaveDialog();
+//        saveDialogCallback = SaveDialogCB_DisplaySavingMessage;
+//        break;
+//    case -1:    //B button
+//    case 1:     //NO
+//        HideSaveDialog();
+//        sub_8071700();
+//        return SAVE_CANCELED;
+//    }
+//    return SAVE_IN_PROGRESS;
+//}
 
 static u8 SaveDialogCB_DisplaySavingMessage(void)
 {
