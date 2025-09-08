@@ -1,11 +1,7 @@
 Common_EventScript_PkmnCenterNurse:: @ 819FD5B
 	lock
 	faceplayer
-	msgbox gText_NurseJoy_Welcome, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_PkmnCenterNurse_HealPkmn
-	compare VAR_RESULT, NO
-	goto_if_eq EventScript_PkmnCenterNurse_Goodbye
+	goto EventScript_PkmnCenterNurse_HealPkmn
 	end
 
 EventScript_PkmnCenterNurse_HealPkmn:: @ 819FD7C
