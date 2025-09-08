@@ -687,7 +687,7 @@ static bool8 sub_8101E3C(struct Task *task)
             return 0;
         }
     }
-    if (unk_debug_bss_1_1 != 0 && (gMain.newKeys & 8))
+    if (unk_debug_bss_1_1 != 0 && (gMain.heldKeys & 8))
     {
         debug_sub_811B620();
         sSlotMachine->state = 29;
@@ -695,12 +695,12 @@ static bool8 sub_8101E3C(struct Task *task)
     }
 #endif
 
-    if (gMain.newKeys & SELECT_BUTTON)
+    if (gMain.heldKeys & SELECT_BUTTON)
     {
         sub_8104AB8(0);
         sSlotMachine->state = 8;
     }
-    else if (gMain.newKeys & R_BUTTON)
+    else if (gMain.heldKeys & R_BUTTON)
     {
         if (sSlotMachine->coins - (3 - sSlotMachine->bet) >= 0)
         {
@@ -718,16 +718,16 @@ static bool8 sub_8101E3C(struct Task *task)
     }
     else
     {
-        if (gMain.newKeys & DPAD_DOWN && sSlotMachine->coins != 0)
+        if (gMain.heldKeys & DPAD_DOWN && sSlotMachine->coins != 0)
         {
             PlaySE(SE_SHOP);
             sub_8103D50(sSlotMachine->bet);
             sSlotMachine->coins--;
             sSlotMachine->bet++;
         }
-        if (sSlotMachine->bet >= 3 || (sSlotMachine->bet != 0 && gMain.newKeys & A_BUTTON))
+        if (sSlotMachine->bet >= 3 || (sSlotMachine->bet != 0 && gMain.heldKeys & A_BUTTON))
             sSlotMachine->state = 9;
-        if (gMain.newKeys & B_BUTTON)
+        if (gMain.heldKeys & B_BUTTON)
             sSlotMachine->state = 21;
     }
     return FALSE;
