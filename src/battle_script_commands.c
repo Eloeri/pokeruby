@@ -5500,7 +5500,7 @@ static void atk5D_getmoneyreward(void)
                 break;
         }
         party4 = gTrainers[gTrainerBattleOpponent].party.ItemCustomMoves; // Needed to match. Has no effect.
-        money_to_give = 4 * lvl * gBattleStruct->moneyMultiplier * (gBattleTypeFlags & BATTLE_TYPE_DOUBLE ? 2 : 1) * gTrainerMoney[i].baseMoney;
+        money_to_give = 4 * lvl * gBattleStruct->moneyMultiplier * 2 * (gBattleTypeFlags & BATTLE_TYPE_DOUBLE ? 2 : 1) * gTrainerMoney[i].baseMoney;
     }
 
     AddMoney(&gSaveBlock1.money, money_to_give);
