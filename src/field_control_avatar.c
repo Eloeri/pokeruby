@@ -655,7 +655,7 @@ static bool8 UpdatePoisonStepCounter(void)
 void RestartWildEncounterImmunitySteps(void)
 {
     // Starts at 0 and counts up to 4 steps.
-    sWildEncounterImmunitySteps = 0;
+    sWildEncounterImmunitySteps = 4;
 }
 
 static bool8 CheckStandardWildEncounter(u16 metatileBehavior)
@@ -669,7 +669,7 @@ static bool8 CheckStandardWildEncounter(u16 metatileBehavior)
 
     if (StandardWildEncounter(metatileBehavior, sPreviousPlayerMetatileBehavior) == TRUE)
     {
-        sWildEncounterImmunitySteps = 0;
+        sWildEncounterImmunitySteps = 4;
         sPreviousPlayerMetatileBehavior = metatileBehavior;
         return TRUE;
     }
