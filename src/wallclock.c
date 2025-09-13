@@ -6,6 +6,7 @@
 #include "rtc.h"
 #include "scanline_effect.h"
 #include "sound.h"
+#include "strings.h"
 #include "strings2.h"
 #include "task.h"
 #include "trig.h"
@@ -823,6 +824,12 @@ static void Task_ViewClock2(u8 taskId)
     InitClockWithRtc(taskId);
     if (gMain.newKeys & (A_BUTTON | B_BUTTON))
         gTasks[taskId].func = Task_ViewClock3;
+	
+	if (JOY_NEW(R_BUTTON)){
+        PlaySE(SE_SELECT);
+        LZ77UnCompVram(gUnknown_08E954B0, (u16 *)BG_SCREEN_ADDR(7));
+        gTasks[taskId].func = Task_SetClock2;
+	}
 }
 
 static void Task_ViewClock3(u8 taskId)
