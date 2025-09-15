@@ -3,6 +3,8 @@
 
 const u32 gObjectEventPic_BrendanNormal[] = INCBIN_U32("graphics/object_events/pics/people/brendan/normal.4bpp");
 const u16 gObjectEventPalette8[] = INCBIN_U16("graphics/object_events/palettes/08.gbapal");
+const u16 gObjectEventPalette27[] = INCBIN_U16("graphics/object_events/palettes/27.gbapal");
+const u16 gObjectEventPalette28[] = INCBIN_U16("graphics/object_events/palettes/28.gbapal");
 const u16 NullPalette_8310F68[16] = {};
 const u16 NullPalette_8310F88[16] = {};
 const u16 NullPalette_8310FA8[16] = {};

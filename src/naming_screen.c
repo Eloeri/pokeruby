@@ -19,6 +19,7 @@
 #include "trig.h"
 #include "util.h"
 #include "ewram.h"
+#include "constants/event_objects.h"
 
 #ifdef ENGLISH
 #define COLUMN_COUNT 9
@@ -133,6 +134,18 @@ void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 speciesOrPlayerGender, u
     StoreNamingScreenParameters(templateNum, destBuffer, speciesOrPlayerGender, monGender, monPersonality, returnCallback);
     SetMainCallback2(C2_NamingScreen);
 }
+
+static const u8 sPlayerAvatarGfxIds2[][2] =
+{
+    {OBJ_EVENT_GFX_BRENDAN_NORMAL,     OBJ_EVENT_GFX_MAY_NORMAL},
+    {OBJ_EVENT_GFX_BRENDAN_MACH_BIKE,  OBJ_EVENT_GFX_MAY_MACH_BIKE},
+    {OBJ_EVENT_GFX_BRENDAN_ACRO_BIKE,  OBJ_EVENT_GFX_MAY_ACRO_BIKE},
+    {OBJ_EVENT_GFX_BRENDAN_SURFING,    OBJ_EVENT_GFX_MAY_SURFING},
+    {OBJ_EVENT_GFX_BRENDAN_UNDERWATER, OBJ_EVENT_GFX_MAY_UNDERWATER},
+    {OBJ_EVENT_GFX_BRENDAN_FIELD_MOVE, OBJ_EVENT_GFX_MAY_FIELD_MOVE},
+    {OBJ_EVENT_GFX_BRENDAN_FISHING,    OBJ_EVENT_GFX_MAY_FISHING},
+    {OBJ_EVENT_GFX_BRENDAN_WATERING,   OBJ_EVENT_GFX_MAY_WATERING},
+};
 
 static void C2_NamingScreen(void)
 {
@@ -1296,12 +1309,17 @@ static void nullsub_40(void)
 {
 }
 
+static u8 GetPlayerAvatarGraphicsIdByStateIdAndGender2(u8 state, u8 gender)
+{
+    return sPlayerAvatarGfxIds2[state][gender];
+}
+
 static void sub_80B6E68(void)
 {
     u8 rivalGfxId;
     u8 spriteId;
 
-    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, namingScreenDataPtr->speciesOrPlayerGender);
+    rivalGfxId = GetPlayerAvatarGraphicsIdByStateIdAndGender2(PLAYER_AVATAR_STATE_NORMAL, namingScreenDataPtr->speciesOrPlayerGender);
     spriteId = AddPseudoObjectEvent(rivalGfxId, SpriteCallbackDummy, 0x38, 0x18, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], 4);

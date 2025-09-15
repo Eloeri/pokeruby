@@ -1900,7 +1900,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Artist = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanNormal = {
     .tileTag = 0xffff,
-    .paletteTag = 0x1100,
+    .paletteTag = 0x111B,
     .bridgeReflectionPaletteTag = 0x1102,
     .size = 256,
     .width = 16,
@@ -1919,7 +1919,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanNormal
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanMachBike = {
     .tileTag = 0xffff,
-    .paletteTag = 0x1100,
+    .paletteTag = 0x111B,
     .bridgeReflectionPaletteTag = 0x1102,
     .size = 512,
     .width = 32,
@@ -1938,7 +1938,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanMachBi
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanAcroBike = {
     .tileTag = 0xffff,
-    .paletteTag = 0x1100,
+    .paletteTag = 0x111B,
     .bridgeReflectionPaletteTag = 0x1102,
     .size = 512,
     .width = 32,
@@ -1957,7 +1957,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanAcroBi
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanSurfing = {
     .tileTag = 0xffff,
-    .paletteTag = 0x1100,
+    .paletteTag = 0x111B,
     .bridgeReflectionPaletteTag = 0x11ff,
     .size = 512,
     .width = 32,
@@ -1976,7 +1976,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanSurfin
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanFieldMove = {
     .tileTag = 0xffff,
-    .paletteTag = 0x1100,
+    .paletteTag = 0x111B,
     .bridgeReflectionPaletteTag = 0x1102,
     .size = 512,
     .width = 32,
@@ -1995,7 +1995,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanFieldM
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayNormal = {
     .tileTag = 0xffff,
-    .paletteTag = 0x1110,
+    .paletteTag = 0x111C,
     .bridgeReflectionPaletteTag = 0x1102,
     .size = 256,
     .width = 16,
@@ -2014,7 +2014,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayNormal = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayMachBike = {
     .tileTag = 0xffff,
-    .paletteTag = 0x1110,
+    .paletteTag = 0x111C,
     .bridgeReflectionPaletteTag = 0x1102,
     .size = 512,
     .width = 32,
@@ -2033,7 +2033,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayMachBike =
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayAcroBike = {
     .tileTag = 0xffff,
-    .paletteTag = 0x1110,
+    .paletteTag = 0x111C,
     .bridgeReflectionPaletteTag = 0x1102,
     .size = 512,
     .width = 32,
@@ -2052,7 +2052,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayAcroBike =
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMaySurfing = {
     .tileTag = 0xffff,
-    .paletteTag = 0x1110,
+    .paletteTag = 0x111C,
     .bridgeReflectionPaletteTag = 0x11ff,
     .size = 512,
     .width = 32,
@@ -2071,7 +2071,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMaySurfing = 
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayFieldMove = {
     .tileTag = 0xffff,
-    .paletteTag = 0x1110,
+    .paletteTag = 0x111C,
     .bridgeReflectionPaletteTag = 0x1102,
     .size = 512,
     .width = 32,

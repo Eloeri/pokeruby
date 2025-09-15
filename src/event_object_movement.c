@@ -376,6 +376,8 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_24 0x1118
 #define OBJ_EVENT_PAL_TAG_25 0x1119
 #define OBJ_EVENT_PAL_TAG_26 0x111A
+#define OBJ_EVENT_PAL_TAG_27 0x111B
+#define OBJ_EVENT_PAL_TAG_28 0x111C
 
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
@@ -415,6 +417,8 @@ const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPalette24, OBJ_EVENT_PAL_TAG_24},
     {gObjectEventPalette25, OBJ_EVENT_PAL_TAG_25},
     {gObjectEventPalette26, OBJ_EVENT_PAL_TAG_26},
+    {gObjectEventPalette27, OBJ_EVENT_PAL_TAG_27},
+    {gObjectEventPalette28, OBJ_EVENT_PAL_TAG_28},
     {NULL,                  0x0000},
 };
 
