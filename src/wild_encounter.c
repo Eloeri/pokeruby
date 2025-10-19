@@ -376,10 +376,7 @@ static bool8 DoMassOutbreakEncounterTest(void)
 
 static bool8 DoWildEncounterRateDiceRoll(u16 encounterRate)
 {
-    if (Random() % MAX_ENCOUNTER_RATE < encounterRate)
-        return TRUE;
-    else
-        return FALSE;
+    return TRUE;
 }
 
 #if DEBUG
