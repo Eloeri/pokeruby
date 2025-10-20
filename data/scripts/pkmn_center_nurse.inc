@@ -19,10 +19,10 @@ EventScript_PkmnCenterNurse_HealPkmn:: @ 819FD7C
 
 EventScript_PkmnCenterNurse_ReturnPkmn:: @ 819FDB0
 	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
-	return
+	end
 
 EventScript_PkmnCenterNurse_Goodbye:: @ 819FDC7
-	return
+	end
 
 EventScript_PkmnCenterNurse_CheckPokerus:: @ 819FDCE
 	specialvar VAR_RESULT, IsPokerusInParty
