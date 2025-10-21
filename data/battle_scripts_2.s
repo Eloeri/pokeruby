@@ -111,7 +111,7 @@ BattleScript_PlayerUsesItem: @ 81D9F45
 	end
 
 BattleScript_OpponentUsesHealItem: @ 81D9F4F
-	pause 48
+	pause 24
 	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
 	waitmessage 32
@@ -127,7 +127,7 @@ BattleScript_OpponentUsesHealItem: @ 81D9F4F
 	finishaction
 
 BattleScript_OpponentUsesStatusCureItem: @ 81D9F7B
-	pause 48
+	pause 24
 	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
 	waitmessage 32
@@ -140,7 +140,7 @@ BattleScript_OpponentUsesStatusCureItem: @ 81D9F7B
 	finishaction
 
 BattleScript_OpponentUsesXItem: @ 81D9F9C
-	pause 48
+	pause 24
 	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
 	waitmessage 32
@@ -152,7 +152,7 @@ BattleScript_OpponentUsesXItem: @ 81D9F9C
 	finishaction
 
 BattleScript_OpponentUsesGuardSpecs: @ 81D9FBB
-	pause 48
+	pause 24
 	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
 	waitmessage 32
