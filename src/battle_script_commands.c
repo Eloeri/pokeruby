@@ -3341,7 +3341,7 @@ static void atk23_getexp(void)
     case 0: // check if should receive exp at all
         if (GetBattlerSide(gBank1) != B_SIDE_OPPONENT || (gBattleTypeFlags &
              (BATTLE_TYPE_SAFARI
-              | BATTLE_TYPE_BATTLE_TOWER)))
+             |BATTLE_TYPE_BATTLE_TOWER)))
         {
             gBattleStruct->getexpStateTracker = 6; // goto last case
         }
