@@ -73,7 +73,7 @@ BattleScript_TryNicknameCaughtMon: @ 81D9EE3
 	setbyte gBattleCommunication, 0
 	trygivecaughtmonnick BattleScript_GiveCaughtMonEnd
 	printstring BATTLE_TEXT_SentToPC
-	waitmessage 32
+	waitmessage 16
 
 BattleScript_GiveCaughtMonEnd: @ 81D9EF8
 	givecaughtmon
@@ -87,22 +87,22 @@ BattleScript_WallyBallThrow:: @ 81D9F00
 
 BattleScript_ShakeBallThrow:: @ 81D9F0A
 	printfromtable gBallEscapeStringIds
-	waitmessage 32
+	waitmessage 16
 	jumpifbyte NO_COMMON_BITS, gBattleTypeFlags, BATTLE_TYPE_SAFARI, BattleScript_ShakeBallThrowEnd
 	jumpifbyte NOT_EQUAL, gNumSafariBalls, 0, BattleScript_ShakeBallThrowEnd
 	printstring BATTLE_TEXT_SafariOver
-	waitmessage 32
+	waitmessage 16
 	setbyte gBattleOutcome, B_OUTCOME_NO_SAFARI_BALLS
 
 BattleScript_ShakeBallThrowEnd: @ 81D9F34
 	finishaction
 
 BattleScript_TrainerBallBlock:: @ 81D9F35
-	waitmessage 32
+	waitmessage 16
 	printstring BATTLE_TEXT_BlockBall
-	waitmessage 32
+	waitmessage 16
 	printstring BATTLE_TEXT_DontBeAThief
-	waitmessage 32
+	waitmessage 16
 	finishaction
 
 BattleScript_PlayerUsesItem: @ 81D9F45
@@ -114,13 +114,13 @@ BattleScript_OpponentUsesHealItem: @ 81D9F4F
 	pause 24
 	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
-	waitmessage 32
+	waitmessage 16
 	useitemonopponent
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate USER
 	datahpupdate USER
 	printstring BATTLE_TEXT_RestoredHealth
-	waitmessage 32
+	waitmessage 16
 	updatestatusicon USER
 	setbyte sMOVEEND_STATE, 15
 	moveend 1, 0
@@ -130,10 +130,10 @@ BattleScript_OpponentUsesStatusCureItem: @ 81D9F7B
 	pause 24
 	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
-	waitmessage 32
+	waitmessage 16
 	useitemonopponent
 	printfromtable gTrainerItemCuredStatusStringIds
-	waitmessage 32
+	waitmessage 16
 	updatestatusicon USER
 	setbyte sMOVEEND_STATE, 15
 	moveend 1, 0
@@ -143,10 +143,10 @@ BattleScript_OpponentUsesXItem: @ 81D9F9C
 	pause 24
 	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
-	waitmessage 32
+	waitmessage 16
 	useitemonopponent
 	printfromtable gStatUpStringIds
-	waitmessage 32
+	waitmessage 16
 	setbyte sMOVEEND_STATE, 15
 	moveend 1, 0
 	finishaction
@@ -155,10 +155,10 @@ BattleScript_OpponentUsesGuardSpecs: @ 81D9FBB
 	pause 24
 	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
-	waitmessage 32
+	waitmessage 16
 	useitemonopponent
 	printfromtable gMistUsedStringIds
-	waitmessage 32
+	waitmessage 16
 	setbyte sMOVEEND_STATE, 15
 	moveend 1, 0
 	finishaction
@@ -170,29 +170,29 @@ BattleScript_RunByUsingItem: @ 81D9FDA
 
 BattleScript_ActionWatchesCarefully: @ 81D9FE4
 	printstring BATTLE_TEXT_WatchingCarefully
-	waitmessage 32
+	waitmessage 16
 	end2
 
 BattleScript_ActionGetNear: @ 81D9FEB
 	printfromtable gSafariGetNearStringIds
-	waitmessage 32
+	waitmessage 16
 	end2
 
 BattleScript_ActionThrowPokeblock: @ 81D9FF4
 	printstring BATTLE_TEXT_ThrewBlock
-	waitmessage 32
+	waitmessage 16
 	playanimation USER, B_ANIM_POKEBLOCK_THROW, 0x0
 	printfromtable gSafariPokeblockResultStringIds
-	waitmessage 32
+	waitmessage 16
 	end2
 
 BattleScript_1DA00A: @ 81DA00A
 	printstring 2
-	waitmessage 32
+	waitmessage 16
 	returnatktoball
 	waitstate
 	trainerslidein TARGET
 	waitstate
 	printstring BATTLE_TEXT_WallyBall
-	waitmessage 32
+	waitmessage 16
 	end2
