@@ -19,11 +19,8 @@
 #define BATTLESTRINGS_NO    351
 #define BATTLESTRINGS_MAX   BATTLESTRINGS_NO + BATTLESTRING_TO_SUB
 
-#ifdef GERMAN
-#include "data/battle_strings_de.h" // TODO: German
-#else
 #include "data/battle_strings_en.h"
-#endif
+
 
 // This is four lists of moves which use a different attack string in Japanese
 // to the default. See the documentation for ChooseTypeOfMoveUsedString for more detail.
@@ -424,6 +421,9 @@ void BufferStringBattle(u16 stringID)
                 }
             }
         }
+        break;
+    case BATTLE_TEXT_CantEscape:
+        stringPtr = BattleText_CantEscape;
         break;
     default: // load a string from the table
         if (stringID >= BATTLESTRINGS_MAX)

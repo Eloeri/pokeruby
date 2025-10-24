@@ -139,6 +139,7 @@ extern u16 gDynamicBasePower;
 extern u8 gCurrentTurnActionNumber;
 extern void (* const gUnknown_081FA640[])(void);
 extern void (* const gUnknown_081FA678[])(void);
+static void BattleIntroQuickRun(void);
 extern u8* gBattlescriptCurrInstr;
 extern u8 BattleScript_LinkBattleWonOrLost[];
 extern u8 BattleScript_PayDayMoneyAndPickUpItems[];
@@ -3855,15 +3856,6 @@ void bc_battle_begin_message(void)
     }
 }
 
-void bc_8013568(void)
-{
-    if (gBattleControllerExecFlags == 0)
-    {
-        gBattleMainFunc = sub_8011970;
-        PrepareStringBattle(0, 0);
-    }
-}
-
 void sub_8011800(void)
 {
     if (gBattleControllerExecFlags == 0)
@@ -5015,6 +5007,28 @@ void HandleEndTurn_RanFromBattle(void)
     gBattleMainFunc = HandleEndTurn_FinishBattle;
 }
 
+void bc_8013568(void)//TEST TO SEE IF THIS IS THE CORRECT FUNCTION
+{
+    if (gBattleControllerExecFlags == 0)
+    {
+        gBattleMainFunc = BattleIntroQuickRun;
+        PrepareStringBattle(0, 0);
+    }
+}
+void BattleIntroQuickRun(void)
+{
+    if (gBattleControllerExecFlags == 0)
+    {
+        if (JOY_HELD(DPAD_RIGHT)){
+            if (!CanRunFromBattle() && TryRunFromBattle(gBattlerAttacker)){
+                gBattleMainFunc = HandleEndTurn_RanFromBattle;
+                return;
+            }
+            PrepareStringBattle(STRINGID_CANTESCAPE, 0);
+        }
+        gBattleMainFunc = sub_8011970;
+    }
+}
 void HandleEndTurn_MonFled(void)
 {
     gCurrentActionFuncId = 0;
