@@ -1915,7 +1915,10 @@ s32 sub_8045C78(u8 a, u8 unused1, u8 c, u8 unused2)
 
     if (c == 0)
     {
-        r6 = sub_8045F58(eBattleBars[a].maxValue, eBattleBars[a].oldValue, eBattleBars[a].receivedValue, &eBattleBars[a].currValue, 6, 1);
+        u16 step = eBattleBars[a].maxValue / 32;
+        if (step == 0)
+            step = 1;   
+        r6 = sub_8045F58(eBattleBars[a].maxValue, eBattleBars[a].oldValue, eBattleBars[a].receivedValue, &eBattleBars[a].currValue, 6, step);
     }
     else
     {
