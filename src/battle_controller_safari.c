@@ -44,6 +44,7 @@ extern u8 GetBattlerPosition(u8);
 extern void LoadPlayerTrainerBankSprite();
 extern u8 GetBattlerSubpriority();
 extern void sub_80313A0(struct Sprite *);
+extern void SpriteCB_TrainerSpawn(struct Sprite *);
 extern void sub_810BADC(void);
 extern void StartBattleIntroAnim();
 extern void sub_804777C();
@@ -403,7 +404,7 @@ void SafariHandleTrainerThrow(void)
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = 240;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -2;
-    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = sub_80313A0;
+    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = SpriteCB_TrainerSpawn;
     gBattlerControllerFuncs[gActiveBattler] = sub_812B65C;
 }
 

@@ -17,24 +17,10 @@ extern u8 gBattleMonForms[];
 
 extern void sub_800FE20(struct Sprite *);
 
-static void BattleIntroTask_ScrollScenery(u8);
 static void BattleIntroTask_FadeScenery(u8);
-static void BattleIntroTask_ScrollAndFadeScenery(u8);
 static void BattleIntroTask_80E4C34(u8);
 
-static const TaskFunc sBattleIntroTaskFuncs[] =
-{
-    BattleIntroTask_ScrollScenery,
-    BattleIntroTask_ScrollScenery,
-    BattleIntroTask_FadeScenery,
-    BattleIntroTask_FadeScenery,
-    BattleIntroTask_FadeScenery,
-    BattleIntroTask_ScrollScenery,
-    BattleIntroTask_ScrollScenery,
-    BattleIntroTask_ScrollScenery,
-    BattleIntroTask_ScrollAndFadeScenery,
-    BattleIntroTask_ScrollAndFadeScenery,
-};
+static void BattleIntroNoSlide(u8);
 
 #define tState data[0]
 #define tBgXOffset data[2]
@@ -55,7 +41,7 @@ void StartBattleIntroAnim(u8 a)
     }
     else
     {
-        taskId = CreateTask(sBattleIntroTaskFuncs[a], 0);
+        taskId = CreateTask(BattleIntroNoSlide, 0);
     }
 
     gTasks[taskId].tState = 0;
@@ -81,12 +67,8 @@ static void EndBattleIntroTask(u8 taskId)
     REG_WINOUT = 0x3F3F;
 }
 
-static void BattleIntroTask_ScrollScenery(u8 taskId)
+static void BattleIntroNoSlide(u8 taskId)
 {
-    s32 i;
-
-    gBattle_BG1_X += 6;
-
     switch (gTasks[taskId].tState)
     {
     case 0:
@@ -94,11 +76,13 @@ static void BattleIntroTask_ScrollScenery(u8 taskId)
         {
             gTasks[taskId].tBgXOffset = 16;
             gTasks[taskId].tState++;
+            gIntroSlideFlags &= ~1;
         }
         else
         {
             gTasks[taskId].tBgXOffset = 1;
             gTasks[taskId].tState++;
+            gIntroSlideFlags &= ~1;
         }
         break;
     case 1:
@@ -107,60 +91,22 @@ static void BattleIntroTask_ScrollScenery(u8 taskId)
         {
             gTasks[taskId].tState++;
             REG_WININ = 0x3F;
+            gScanlineEffect.state = 3;
         }
         break;
     case 2:
-        // Open up the window
-        gBattle_WIN0V -= WIN_RANGE(1, 0);  // decrement min Y
-        gBattle_WIN0V += WIN_RANGE(0, 1);  // increment max Y
-        if ((gBattle_WIN0V & 0xFF00) == 0x3000)
+        gBattle_WIN0V -= WIN_RANGE(1, 0) * 2;  // decrement min Y
+        gBattle_WIN0V += WIN_RANGE(0, 1) * 2;  // increment max Y
+        if ((gBattle_WIN0V & 0xFF00) == 0)
         {
             gTasks[taskId].tState++;
-            gTasks[taskId].tBgXOffset = DISPLAY_WIDTH;
-            gTasks[taskId].tFramesUntilBg1Slide = 32;
-            gIntroSlideFlags &= ~1;
         }
         break;
     case 3:
-        if (gTasks[taskId].tFramesUntilBg1Slide != 0)
-        {
-            gTasks[taskId].tFramesUntilBg1Slide--;
-        }
-        else
-        {
-            if (gTasks[taskId].data[1] == 1)
-            {
-                if (gBattle_BG1_Y != 0xFFB0)
-                    gBattle_BG1_Y -= 2;
-            }
-            else
-            {
-                if (gBattle_BG1_Y != 0xFFC8)
-                    gBattle_BG1_Y -= 1;
-            }
-        }
-
-        if ((gBattle_WIN0V & 0xFF00) != 0)
-            gBattle_WIN0V -= 1020;
-
-        if (gTasks[taskId].tBgXOffset != 0)
-            gTasks[taskId].tBgXOffset -= 2;
-
-        // Slide in the top half of the BG from the left
-        for (i = 0; i < DISPLAY_HEIGHT / 2; i++)
-            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].tBgXOffset;
-        // Slide in the bottom half of the BG from the right
-        for (; i < DISPLAY_HEIGHT; i++)
-            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = -gTasks[taskId].tBgXOffset;
-
-        if (gTasks[taskId].tBgXOffset == 0)
-        {
-            gScanlineEffect.state = 3;
-            gTasks[taskId].tState++;
-            CpuFill32(0, (void *)(VRAM + 0xE000), 0x800);
-            REG_BG1CNT = 0x9C00;
-            REG_BG2CNT = 0x5E00;
-        }
+        gTasks[taskId].tState++;
+        CpuFill32(0, (void *)(VRAM + 0xE000), 0x800);
+        REG_BG1CNT = 0x9C00;
+        REG_BG2CNT = 0x5E00;
         break;
     case 4:
         EndBattleIntroTask(taskId);
@@ -247,96 +193,6 @@ static void BattleIntroTask_FadeScenery(u8 taskId)
             {
                 gTasks[taskId].data[4] += 255;
                 gTasks[taskId].data[5] = 4;
-            }
-        }
-
-        if ((gBattle_WIN0V & 0xFF00) != 0)
-            gBattle_WIN0V -= 1020;
-
-        if (gTasks[taskId].tBgXOffset != 0)
-            gTasks[taskId].tBgXOffset -= 2;
-
-        // Slide in the top half of the BG from the left
-        for (i = 0; i < DISPLAY_HEIGHT / 2; i++)
-            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].tBgXOffset;
-        // Slide in the bottom half of the BG from the right
-        for (; i < DISPLAY_HEIGHT; i++)
-            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = -gTasks[taskId].tBgXOffset;
-
-        if (gTasks[taskId].tBgXOffset == 0)
-        {
-            gScanlineEffect.state = 3;
-            gTasks[taskId].tState++;
-            CpuFill32(0, (void *)(VRAM + 0xE000), 0x800);
-            REG_BG1CNT = 0x9C00;
-            REG_BG2CNT = 0x5E00;
-        }
-        break;
-    case 4:
-        EndBattleIntroTask(taskId);
-        break;
-    }
-
-    if (gTasks[taskId].tState != 4)
-        REG_BLDALPHA = gTasks[taskId].data[4];
-}
-
-static void BattleIntroTask_ScrollAndFadeScenery(u8 taskId)
-{
-    s32 i;
-
-    gBattle_BG1_X += 8;
-
-    switch (gTasks[taskId].tState)
-    {
-    case 0:
-        REG_BLDCNT = 0x1842;
-        REG_BLDALPHA = 0x0808;
-        REG_BLDY = 0;
-        gTasks[taskId].data[4] = 0x0808;
-        if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-        {
-            gTasks[taskId].tBgXOffset = 16;
-            gTasks[taskId].tState++;
-        }
-        else
-        {
-            gTasks[taskId].tBgXOffset = 1;
-            gTasks[taskId].tState++;
-        }
-        break;
-    case 1:
-        gTasks[taskId].tBgXOffset--;
-        if (gTasks[taskId].tBgXOffset == 0)
-        {
-            gTasks[taskId].tState++;
-            REG_WININ = 0x3F;
-        }
-        break;
-    case 2:
-        // Open up window
-        gBattle_WIN0V -= WIN_RANGE(1, 0);  // decrement min Y
-        gBattle_WIN0V += WIN_RANGE(0, 1);  // increment max Y
-        if ((gBattle_WIN0V & 0xFF00) == 0x3000)
-        {
-            gTasks[taskId].tState++;
-            gTasks[taskId].tBgXOffset = DISPLAY_WIDTH;
-            gTasks[taskId].tFramesUntilBg1Slide = 32;
-            gTasks[taskId].data[5] = 1;
-            gIntroSlideFlags &= ~1;
-        }
-        break;
-    case 3:
-        if (gTasks[taskId].tFramesUntilBg1Slide != 0)
-        {
-            gTasks[taskId].tFramesUntilBg1Slide--;
-        }
-        else
-        {
-            if ((gTasks[taskId].data[4] & 0xF) && --gTasks[taskId].data[5] == 0)
-            {
-                gTasks[taskId].data[4] += 255;
-                gTasks[taskId].data[5] = 6;
             }
         }
 

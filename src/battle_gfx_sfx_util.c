@@ -129,7 +129,7 @@ void sub_80312F0(struct Sprite *sprite)
     }
 }
 
-void unref_sub_8031364(struct Sprite *sprite, bool8 stupid)
+void unref_sub_8031364(struct Sprite *sprite, bool8 stupid) //potentially UnusedDoBattleSpriteAffineAnim
 {
     sprite->animPaused = TRUE;
     sprite->callback = SpriteCallbackDummy;
@@ -140,7 +140,7 @@ void unref_sub_8031364(struct Sprite *sprite, bool8 stupid)
     AnimateSprite(sprite);
 }
 
-void sub_80313A0(struct Sprite *sprite)
+void sub_80313A0(struct Sprite *sprite) //potentially SpriteCB_TrainerSlideIn -- Seems that in Emerald, this is separated into two different functions. Here is's both _TrainerSlideIn and _TrainersSlideVertical
 {
     if (!(gIntroSlideFlags & 1))
     {
@@ -150,7 +150,16 @@ void sub_80313A0(struct Sprite *sprite)
     }
 }
 
-void move_anim_start_t2_for_situation(u8 a, u32 b)
+void SpriteCB_TrainerSpawn(struct Sprite *sprite)
+{
+    if (!(gIntroSlideFlags & 1))
+    {
+        sprite->x2 = 0;
+        sprite->callback = SpriteCallbackDummy;
+    }
+}
+
+void move_anim_start_t2_for_situation(u8 a, u32 b) //potentially InitAndLaunchChosenStatusAnimation
 {
     ewram17810[gActiveBattler].unk0_4 = 1;
     if (a == 0)

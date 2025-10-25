@@ -118,6 +118,7 @@ extern void sub_802D23C(void);
 extern u8 GetBattlerPosition(u8);
 extern void LoadPlayerTrainerBankSprite();
 extern void sub_80313A0(struct Sprite *);
+extern void SpriteCB_TrainerSpawn(struct Sprite *);
 extern void sub_802D204(void);
 extern u8 GetBattlerSubpriority();
 extern void sub_802DEAC(void);
@@ -2418,7 +2419,7 @@ void PlayerHandleTrainerThrow(void)
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = 240;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -2;
-    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = sub_80313A0;
+    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = SpriteCB_TrainerSpawn;
     gBattlerControllerFuncs[gActiveBattler] = sub_802D204;
 }
 

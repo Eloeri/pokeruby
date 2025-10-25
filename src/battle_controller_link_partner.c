@@ -76,6 +76,7 @@ extern void sub_80105EC(struct Sprite *);
 extern s32 sub_803FC34(u16);
 extern void LoadPlayerTrainerBankSprite();
 extern void sub_80313A0(struct Sprite *);
+extern void SpriteCB_TrainerSpawn(struct Sprite *);
 extern u8 StartSendOutMonAnimation();
 extern void sub_80312F0(struct Sprite *);
 extern u8 CreateInvisibleSpriteWithCallback();
@@ -1195,7 +1196,7 @@ void LinkPartnerHandleTrainerThrow(void)
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = 240;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -2;
-    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = sub_80313A0;
+    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = SpriteCB_TrainerSpawn;
     gBattlerControllerFuncs[gActiveBattler] = sub_811DAE4;
 }
 

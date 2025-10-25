@@ -67,6 +67,7 @@ extern void sub_8037BBC(void);
 extern s32 sub_803FC34(u16);
 extern void sub_8031A6C(u16, u8);
 extern void sub_80313A0(struct Sprite *);
+extern void SpriteCB_TrainerSpawn(struct Sprite *);
 extern void sub_803757C(void);
 extern void oamt_add_pos2_onto_pos1();
 extern void StoreSpriteCallbackInData();
@@ -1259,7 +1260,7 @@ void LinkOpponentHandleTrainerThrow(void)
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[5] = gSprites[gBattlerSpriteIds[gActiveBattler]].oam.tileNum;
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.tileNum = GetSpriteTileStartByTag(gTrainerFrontPicTable[gender].tag);
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.affineParam = gender;
-    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = sub_80313A0;
+    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = SpriteCB_TrainerSpawn;
     gBattlerControllerFuncs[gActiveBattler] = sub_803757C;
 }
 

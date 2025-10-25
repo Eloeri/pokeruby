@@ -240,20 +240,6 @@ void CB2_InitBattleInternal(void)
     REG_WINOUT = 0;
     gBattle_WIN0H = 0xF0;
     gBattle_WIN0V = 0x5051;
-    ScanlineEffect_Clear();
-
-    for (i = 0; i < 80; i++)
-    {
-        gScanlineEffectRegBuffers[0][i] = 0xF0;
-        gScanlineEffectRegBuffers[1][i] = 0xF0;
-    }
-    for (; i < 160; i++)
-    {
-        gScanlineEffectRegBuffers[0][i] = 0xFF10;
-        gScanlineEffectRegBuffers[1][i] = 0xFF10;
-    }
-    //ScanlineEffect_SetParams(gUnknown_081F9674.totalPoints, gUnknown_081F9674.round1Points, gUnknown_081F9674.random);
-    ScanlineEffect_SetParams(gUnknown_081F9674);
     Text_LoadWindowTemplate(&gWindowTemplate_81E6C58);
     ResetPaletteFade();
     gBattle_BG0_X = 0;
@@ -279,7 +265,6 @@ void CB2_InitBattleInternal(void)
     LoadBattleTextboxAndBackground();
     ResetSpriteData();
     ResetTasks();
-    DrawBattleEntryBackground();
     FreeAllSpritePalettes();
     gReservedSpritePaletteCount = 4;
     SetVBlankCallback(sub_800FCFC);
@@ -3062,19 +3047,16 @@ void oac_poke_opponent(struct Sprite *sprite)
 {
     sprite->callback = sub_8010278;
     StartSpriteAnimIfDifferent(sprite, 0);
-    BeginNormalPaletteFade(0x00020000, 0, 10, 10, RGB(15, 15, 15));
 }
 
 void sub_8010278(struct Sprite *sprite)
 {
     if ((gIntroSlideFlags & 1) == 0)
     {
-        sprite->x2 += 2;
-        if (sprite->x2 == 0)
-        {
+        sprite->x2 = 0;
             sprite->callback = sub_80102AC;
             PlayCry1(sprite->data[2], 25);
-        }
+        
     }
 }
 
@@ -3086,7 +3068,6 @@ void sub_80102AC(struct Sprite *sprite)
         sub_8043DFC(gHealthboxSpriteIds[sprite->data[0]]);
         sprite->callback = nullsub_37;
         StartSpriteAnimIfDifferent(sprite, 0);
-        BeginNormalPaletteFade(0x00020000, 0, 10, 0, RGB(15, 15, 15));
     }
 }
 

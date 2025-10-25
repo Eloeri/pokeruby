@@ -79,6 +79,7 @@ extern void sub_8032A08();
 extern void sub_8033160(void);
 extern u8 get_trainer_class_pic_index(void);
 extern void sub_80313A0(struct Sprite *);
+extern void SpriteCB_TrainerSpawn(struct Sprite *);
 extern void sub_8032B4C(void);
 extern void sub_8031A6C(u16, u8);
 extern void sub_8032B84(void);
@@ -1238,7 +1239,7 @@ void OpponentHandleTrainerThrow(void)
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[5] = gSprites[gBattlerSpriteIds[gActiveBattler]].oam.tileNum;
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.tileNum = GetSpriteTileStartByTag(gTrainerFrontPicTable[trainerPicIndex].tag);
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.affineParam = trainerPicIndex;
-    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = sub_80313A0;
+    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = SpriteCB_TrainerSpawn;
     gBattlerControllerFuncs[gActiveBattler] = sub_8032B4C;
 }
 

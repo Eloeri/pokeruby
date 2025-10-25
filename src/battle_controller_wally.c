@@ -70,6 +70,7 @@ extern void PlayerHandlecmd1(void);
 extern void LoadPlayerTrainerBankSprite();
 extern u8 GetBattlerPosition(u8);
 extern void sub_80313A0(struct Sprite *);
+extern void SpriteCB_TrainerSpawn(struct Sprite *);
 extern u8 GetBattlerAtPosition(u8);
 extern u8 IsMoveWithoutAnimation();
 extern void sub_80326EC();
@@ -1104,7 +1105,7 @@ void WallyHandleTrainerThrow(void)
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = 240;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -2;
-    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = sub_80313A0;
+    gSprites[gBattlerSpriteIds[gActiveBattler]].callback = SpriteCB_TrainerSpawn;
     gBattlerControllerFuncs[gActiveBattler] = sub_813741C;
 }
 
