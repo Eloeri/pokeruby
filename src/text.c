@@ -2492,7 +2492,29 @@ static u8 UpdateWindowText(struct Window *win)
     }
 
     PrintNextChar(win);
+    {
+    u8 repeats;
+    switch (gSaveBlock2.optionsTextSpeed)
+    {
+    default:
+        repeats = 1;
+        break;
+    case 0: repeats = 1; break;
+    case 1: repeats = 2; break;
+    case 2: repeats = 4; break;
+    }
 
+    while (repeats > 1)
+    {
+        u8 r = PrintNextChar(win);
+        if (r != 1)
+            break;
+        if (win->state != WIN_STATE_NORMAL)
+            break;
+
+        repeats++;
+    }
+    }   
     switch (win->state)
     {
     case WIN_STATE_END:
