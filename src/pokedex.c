@@ -1178,7 +1178,6 @@ static const struct SearchOptionText sDexSearchTypeOptions[] =
     {DexText_Terminator5, gTypeNames[TYPE_ICE]},
     {DexText_Terminator5, gTypeNames[TYPE_DRAGON]},
     {DexText_Terminator5, gTypeNames[TYPE_DARK]},
-    {DexText_Terminator5, gTypeNames[TYPE_FAIRY]},
     {NULL, NULL},
 };
 static const u8 sPokedexModes[] = {0, 1};
