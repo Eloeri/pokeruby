@@ -2506,12 +2506,9 @@ static u8 UpdateWindowText(struct Window *win)
 
     while (repeats > 1)
     {
-        u8 r = PrintNextChar(win);
-        if (r != 1)
+        u8 result = PrintNextChar(win);
+        if (result != 1 || win->state != WIN_STATE_NORMAL)
             break;
-        if (win->state != WIN_STATE_NORMAL)
-            break;
-
         repeats++;
     }
     }   
