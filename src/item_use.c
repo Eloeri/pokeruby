@@ -613,6 +613,28 @@ void ItemUseOutOfBattle_CoinCase(u8 taskId)
     }
 }
 
+void ItemUseOutOfBattle_SootSack(u8 taskId)
+{
+	ConvertIntToDecimalStringN(gStringVar1, GetAshCount(), 0, 4);
+	StringExpandPlaceholders(gStringVar4, gText_AshQty);
+	if (!gTasks[taskId].data[2])
+	{
+        Menu_EraseWindowRect(0, 13, 13, 20);
+        DisplayItemMessageOnField(taskId, gStringVar4, CleanUpItemMenuMessage, 1);
+	}
+	else
+	{
+        DisplayItemMessageOnField(taskId, gStringVar4, CleanUpOverworldMessage, 0);
+	}
+}		
+
+u16 GetAshCount(void)
+{
+	u16 *ashGatherCount;
+	ashGatherCount = GetVarPointer(VAR_ASH_GATHER_COUNT);
+	return *ashGatherCount;
+}
+
 static void SSTicketWaitForAButtonPress(u8 taskId)
 {
     if (gMain.newKeys & A_BUTTON)

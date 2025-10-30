@@ -904,5 +904,6 @@ extern const u8 gSystemText_SaveFailed[];
 extern const u8 gSystemText_NoSaveFileNoTime[];
 extern const u8 gSystemText_ClockAdjustmentUsable[];
 extern const u8 gSystemText_Saving[];
+extern const u8 gText_AshQty[];
 
 #endif

@@ -928,6 +928,7 @@ const u8 gSystemText_SaveFailed[] = _("Save failed...");
 const u8 gSystemText_NoSaveFileNoTime[] = _("There is no save file, so the time\ncan't be set.");
 const u8 gSystemText_ClockAdjustmentUsable[] = _("The in-game clock adjustment system\nis now useable.");
 const u8 gSystemText_Saving[] = _("SAVING...\nDON'T TURN OFF THE POWER.");
+const u8 gText_AshQty[] = _("ASH QTY:\n{STR_VAR_1}{PAUSE_UNTIL_PRESS}");
 
 #elif GERMAN
 
