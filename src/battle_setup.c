@@ -1476,7 +1476,7 @@ bool8 ShouldTryRematchBattle(void)
 
 u8 IsTrainerReadyForRematch(void)
 {
-    return GetTrainerEyeRematchFlag(gTrainerEyeTrainers, gTrainerBattleOpponent);
+    return TRUE;
 }
 
 void SetTrainerFlagsAfterTrainerEyeRematch(void)
